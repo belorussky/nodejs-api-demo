@@ -4,8 +4,11 @@ import { ExeptionFilter } from './errors/exeption.filter';
 import { IExeptionFilter } from './errors/exeption.filter.interface';
 import { ILogger } from './logger/logger.interface';
 import { LoggerService } from './logger/logger.service';
+import { IUserController } from './users/users.controller.interface';
 import { UserController } from './users/users.controller';
 import { TYPES } from './types';
+import { IUserService } from './users/users.service.interface';
+import { UserService } from './users/users.service';
 
 export interface IBootstrapReturnType {
 	appContainer: Container;
@@ -15,7 +18,8 @@ export interface IBootstrapReturnType {
 export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
 	bind<ILogger>(TYPES.ILogger).to(LoggerService);
 	bind<IExeptionFilter>(TYPES.ExeptionFilter).to(ExeptionFilter);
-	bind<UserController>(TYPES.UserController).to(UserController);
+	bind<IUserController>(TYPES.UserController).to(UserController);
+	bind<IUserService>(TYPES.UserService).to(UserService);
 	bind<App>(TYPES.Application).to(App);
 });
 
